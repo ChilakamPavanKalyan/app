@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Registration Form</title>
+  <style>
+    input[type=button] {
+      background-color: blue;
+      color: white;
+      border-radius: 4px;
+      text-align: center;
+      padding: 5px 282px;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="registrationForm">
+    <table cellpadding="10" border="0" bgcolor="#C8C8CD">
+      <tr>
+        <td colspan="2" style="text-align:center">
+          <Font size="10">REGISTRATION </font>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">First Name </font>
+        </td>
+        <td> <font size="4">
+            <input type="text" name="firstName" placeholder="First Name" size="50" style="border-radius: 4px; padding:5px 30px; border:none;">
+          </font>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Last Name</td> <td><input type="text" name="lastName" placeholder="Last Name" size="50" style="border-radius: 4px; padding:5px 30px; border:none;">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Email*</td>
+        <td><input type="email" name="email" placeholder="Email" size="50" style="background-color:#d2daed;border-radius: 4px; padding:5px 30px; border:none;"></td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Password*</td>
+        <td><input type="password" name="password" placeholder="Password" size="50" style="background-color:#d2daed;border-radius: 4px; padding:5px 30px; border:none;"></td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Confirm<br>Password*</td>
+        <td><input type="password" name="confirmPassword" placeholder="Password" size="50" style="border-radius: 4px; padding:5px 30px; border:none;"></td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Date Of Birth*</td>
+        <td><input type="date" name="dob" size="50" style="border-radius: 4px; padding:5px 165px; border:none;"></td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Phone Number* </td>
+        <td><input type="phone" name="phone" placeholder="Phone Number" maxlength="10" size="50" style="border-radius: 4px; padding:5px 30px; border:none;"><br> your phone won't be disclosed anywhere</td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Height*</td>
+        <td><input type="num" name="height" placeholder="Please Write Your Height In Centimetres" size="50" style="border-radius: 4px; padding:5px 30px; border:none;">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Weight*</td>
+        <td><input type="num" name="weight" placeholder="Please Write Your Weight In Kilograms" size="50" style="border-radius: 4px; padding:5px 30px; border:none;"></td>
+      </tr>
+      <tr>
+        <td>
+          <font size="5">Gender</td>
+        <td><input type="radio" name="gender" value="Female">Female
+          <input type="radio" name="gender" value="Male">Male</td>
+      </tr>
+      <tr>
+        <td>&nbsp</td>
+        <td>
+          <font size="5">*Required Fields</font>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><input type="button" value="Register" onclick="submitForm()"></font></td>
+      </tr>
+    </table>
+  </form>
+
+  <script>
+    function submitForm() {
+      const form = document.getElementById('registrationForm');
+      const formData = new FormData(form);
+
+      fetch('http://localhost:3000/register', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.text())
+        .then(data => {
+          alert(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
+</body>
+
+</html>
