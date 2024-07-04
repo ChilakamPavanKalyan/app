@@ -1,23 +1,19 @@
-pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                sh 'echo Building...'
-                // Add build steps here
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'echo Testing...'
-                // Add test steps here
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'echo Deploying...'
-                // Add deploy steps here
-            }
-        }
-    }
+node('master')
+
+{
+
+stage('ContinuousDownload_master') 
+   
+	 {
+	
+    git 'https://github.com/sunildevops77/maven.git'
+    
+	}
+
+stage('Continuousbuild_master') 
+   
+	 {
+	
+   sh label: '', script: 'mvn package'
+	}
 }
